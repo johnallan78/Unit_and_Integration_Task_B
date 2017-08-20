@@ -25,4 +25,46 @@ describe('calculator functionality', function() {
     expect(runnning_total.getAttribute('value')).to.eventually.equal('6');
  })
 
+ it('should chain multiple operations together', function(){
+   element(by.css('#number5')).click();
+   element(by.css('#number4')).click();
+   element(by.css('#operator_add')).click();
+   expect(running_total.getAttribute('value')).to.eventually.equal('54');
+   element(by.css('#number3')).click();
+   element(by.css('#operator_subtract')).click();
+   expect(running_total.getAttribute('value')).to.eventually.equal('51');
+  
+  })
+
+ it('should work for negative numbers', function(){
+  element(by.css('#number5')).click();
+  element(by.css('#operator_subtract')).click();
+  element(by.css('#number7')).click();
+  expect(running_total.getAttribute('value')).to.eventually.equal('-2');
+ })
+
+ it('should work for decimal numbers', function(){
+  element(by.css('#number5')).click();
+  element(by.css('#operator_divide')).click();
+  element(by.css('#number7')).click();
+  expect(running_total.getAttribute('value')).to.eventually.equal('0.71428571428');
+ })
+
+ it('should work for large numbers', function(){
+  element(by.css('#number9')).click();
+  element(by.css('#operator_multiply')).click();
+  element(by.css('#number9')).click();
+  element(by.css('#operator_multiply')).click();
+  element(by.css('#number9')).click();
+  element(by.css('#operator_multiply')).click();
+  element(by.css('#number9')).click();
+  element(by.css('#operator_multiply')).click();
+  element(by.css('#number9')).click();
+  expect(running_total.getAttribute('value')).to.eventually.equal('531441');
+ })
+
+
+
+
+
 });
